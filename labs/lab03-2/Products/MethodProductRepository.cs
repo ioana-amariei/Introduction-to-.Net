@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace Products
 {
-    public class ProductMethodSyntaxRepository : IProductRepository
+    public class MethodProductRepository : IProductRepository
     {
         private readonly List<Product> _products;
 
-        public ProductMethodSyntaxRepository(List<Product> products)
+        public MethodProductRepository(List<Product> products)
         {
             _products = products;
         }

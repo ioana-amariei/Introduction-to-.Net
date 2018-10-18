@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -7,14 +7,15 @@ using Products;
 namespace ProductsTest
 {
     [TestClass]
-    public class ProductMethodSyntaxRepositoryTest
+    public class QueryProductRepositoryTest
     {
-        private ProductMethodSyntaxRepository _productRepository;
+
+        private QueryProductRepository _productRepository;
 
         [TestInitialize]
         public void InitializeRepository()
         {
-            _productRepository = new ProductMethodSyntaxRepository(new List<Product>
+            _productRepository = new QueryProductRepository(new List<Product>
             {
                 new Product
                 {
@@ -55,12 +56,6 @@ namespace ProductsTest
             });
         }
 
-        [TestCleanup]
-        public void CleanRepository()
-        {
-            _productRepository = null;
-        }
-
         [TestMethod]
         public void Given_RepositoryWithActiveProducts_Then_RetrieveActiveProductsReturnsActiveProducts()
         {
@@ -83,10 +78,15 @@ namespace ProductsTest
         }
 
         [TestMethod]
-        public void
-            Given_NonEmptyRepository_When_RetrievingAllByStartDateAndEndDate_Then_ReturnsProductsByStartDateAndEndDate()
+        public void Given_NonEmptyRepository_When_RetrievingAllByStartDateAndEndDate_Then_ReturnsProductsByStartDateAndEndDate()
         {
-//            var filteredResult = _productRepository.RetrieveAll(startDate, endDate);
+            var products = _productRepository.RetrieveAll();
+            var enumerable = products as Product[] ?? products.ToArray();
+            DateTime startDate = enumerable.ElementAt(0).StartDate;
+            DateTime endDate = enumerable.ElementAt(0).EndDate;
+
+            var filteredResult = _productRepository.RetrieveAll(startDate, endDate);
+            Assert.IsTrue(filteredResult.Count() == 1);
         }
 
         [TestMethod]
