@@ -1,0 +1,9 @@
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary2\bin\Debug\netcoreapp2.1\Product.Data.deps.json
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary2\bin\Debug\netcoreapp2.1\Product.Data.dll
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary2\bin\Debug\netcoreapp2.1\Product.Data.pdb
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary2\obj\Debug\netcoreapp2.1\Product.Data.csproj.CoreCompileInputs.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary2\obj\Debug\netcoreapp2.1\Product.Data.AssemblyInfoInputs.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary2\obj\Debug\netcoreapp2.1\Product.Data.AssemblyInfo.cs
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary2\obj\Debug\netcoreapp2.1\Product.Data.dll
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary2\obj\Debug\netcoreapp2.1\Product.Data.pdb
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary2\obj\Debug\netcoreapp2.1\Product.Data.csprojAssemblyReference.cache

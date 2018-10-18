@@ -1,0 +1,12 @@
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\bin\Debug\netcoreapp2.1\ProductRepository.deps.json
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\bin\Debug\netcoreapp2.1\ProductRepository.dll
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\bin\Debug\netcoreapp2.1\ProductRepository.pdb
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\bin\Debug\netcoreapp2.1\Product.Data.dll
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\bin\Debug\netcoreapp2.1\Product.Data.pdb
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.csprojAssemblyReference.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.csproj.CoreCompileInputs.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.AssemblyInfoInputs.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.AssemblyInfo.cs
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.csproj.CopyComplete
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.dll
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.pdb

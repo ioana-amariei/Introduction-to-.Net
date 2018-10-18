@@ -1,0 +1,8 @@
+C:\facultate\an3\sem1\net\Introduction-to-.Net\labs\lab01\Company\bin\Debug\netstandard2.0\Company.Data.deps.json
+C:\facultate\an3\sem1\net\Introduction-to-.Net\labs\lab01\Company\bin\Debug\netstandard2.0\Company.Data.dll
+C:\facultate\an3\sem1\net\Introduction-to-.Net\labs\lab01\Company\bin\Debug\netstandard2.0\Company.Data.pdb
+C:\facultate\an3\sem1\net\Introduction-to-.Net\labs\lab01\Company\obj\Debug\netstandard2.0\Company.Data.csproj.CoreCompileInputs.cache
+C:\facultate\an3\sem1\net\Introduction-to-.Net\labs\lab01\Company\obj\Debug\netstandard2.0\Company.Data.AssemblyInfoInputs.cache
+C:\facultate\an3\sem1\net\Introduction-to-.Net\labs\lab01\Company\obj\Debug\netstandard2.0\Company.Data.AssemblyInfo.cs
+C:\facultate\an3\sem1\net\Introduction-to-.Net\labs\lab01\Company\obj\Debug\netstandard2.0\Company.Data.dll
+C:\facultate\an3\sem1\net\Introduction-to-.Net\labs\lab01\Company\obj\Debug\netstandard2.0\Company.Data.pdb

@@ -1,0 +1,4 @@
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.Data.csprojAssemblyReference.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.Data.csproj.CoreCompileInputs.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.Data.AssemblyInfoInputs.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ProductRepository\obj\Debug\netcoreapp2.1\ProductRepository.Data.AssemblyInfo.cs

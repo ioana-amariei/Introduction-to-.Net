@@ -1,0 +1,8 @@
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary1\bin\Debug\netcoreapp2.1\Company.Data.deps.json
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary1\bin\Debug\netcoreapp2.1\Company.Data.dll
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary1\bin\Debug\netcoreapp2.1\Company.Data.pdb
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary1\obj\Debug\netcoreapp2.1\Company.Data.csproj.CoreCompileInputs.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary1\obj\Debug\netcoreapp2.1\Company.Data.AssemblyInfoInputs.cache
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary1\obj\Debug\netcoreapp2.1\Company.Data.AssemblyInfo.cs
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary1\obj\Debug\netcoreapp2.1\Company.Data.dll
+C:\facultate\an3\sem1\NET\Introduction-to-.Net\labs\lab02\ClassLibrary1\obj\Debug\netcoreapp2.1\Company.Data.pdb
