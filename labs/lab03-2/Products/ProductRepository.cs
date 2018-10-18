@@ -54,5 +54,10 @@ namespace Products
                 where product.StartDate == startDate && product.EndDate == endDate
                 select product);
         }
+
+        public IEnumerable<Product> RetrieveAll()
+        {
+            return _products;
+        }
     }
 }
