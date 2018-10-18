@@ -92,13 +92,23 @@ namespace ProductsTest
         [TestMethod]
         public void Given_NonEmptyRepository_When_RetrievingAllOrderByPriceDescending_Then_ReturnsOrderedProducts()
         {
-            var orderedProducts = _productRepository.RetrieveAllOrderByPriceDescending();
+            Product[] orderedByPrice = _productRepository.RetrieveAllOrderByPriceDescending().ToArray();
+
+            for (int i = 1; i < orderedByPrice.Count(); i++)
+            {
+                Assert.IsTrue(orderedByPrice[i - 1].Price > orderedByPrice[i].Price);
+            }
         }
 
         [TestMethod]
         public void Given_NonEmptyRepository_When_RetrievingAllOrderByPriceAscending_Then_ReturnsOrderedProducts()
         {
-            var orderedProducts = _productRepository.RetrieveAllOrderByPriceAscending();
+            Product[] orderedByPrice = _productRepository.RetrieveAllOrderByPriceDescending().ToArray();
+
+            for (int i = 1; i < orderedByPrice.Count(); i++)
+            {
+                Assert.IsTrue(orderedByPrice[i - 1].Price < orderedByPrice[i].Price);
+            }
         }
     }
 }

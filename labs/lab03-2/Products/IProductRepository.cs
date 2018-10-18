@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Products
 {
-    interface IProductRepository
+    public interface IProductRepository
     {
         IEnumerable<Product> RetrieveActiveProducts();
         IEnumerable<Product> RetrieveInactiveProducts();

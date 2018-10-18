@@ -6,9 +6,9 @@ namespace Products
 {
     public class MethodProductRepository : IProductRepository
     {
-        private readonly List<Product> _products;
+        private readonly IEnumerable<Product> _products;
 
-        public MethodProductRepository(List<Product> products)
+        public MethodProductRepository(IEnumerable<Product> products)
         {
             _products = products;
         }

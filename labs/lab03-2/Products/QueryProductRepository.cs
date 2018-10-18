@@ -6,9 +6,9 @@ namespace Products
 {
     public class QueryProductRepository : IProductRepository
     {
-        private readonly List<Product> _products;
+        private readonly IEnumerable<Product> _products;
 
-        public QueryProductRepository(List<Product> products)
+        public QueryProductRepository(IEnumerable<Product> products)
         {
             this._products = products;
         }
