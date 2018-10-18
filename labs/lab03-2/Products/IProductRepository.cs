@@ -9,7 +9,7 @@ namespace Products
         IEnumerable<Product> RetrieveInactiveProducts();
         IEnumerable<Product> RetrieveAllOrderByPriceDescending();
         IEnumerable<Product> RetrieveAllOrderByPriceAscending();
-        void RetrieveAll(string name);
-        void RetrieveAll(DateTime startDate, DateTime endDate);
+        IEnumerable<Product> RetrieveAll(string name);
+        IEnumerable<Product> RetrieveAll(DateTime startDate, DateTime endDate);
     }
 }

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Products
 {
-    class ProductRepository : IProductRepository
+    public class ProductRepository : IProductRepository
     {
-        private List<Product> _products;
+        private readonly List<Product> _products;
 
         public ProductRepository(List<Product> products)
         {
@@ -14,32 +15,44 @@ namespace Products
 
         public IEnumerable<Product> RetrieveActiveProducts()
         {
-            throw new NotImplementedException();
+            return (from product in _products
+                where product.StartDate < DateTime.Now && product.EndDate > DateTime.Now
+                select product);
         }
 
         public IEnumerable<Product> RetrieveInactiveProducts()
         {
-            throw new NotImplementedException();
+            return (from product in _products
+                where product.StartDate >= DateTime.Now || product.EndDate <= DateTime.Now
+                select product);
         }
 
         public IEnumerable<Product> RetrieveAllOrderByPriceDescending()
         {
-            throw new NotImplementedException();
+            return (from product in _products
+                orderby product.Price descending
+                select product);
         }
 
         public IEnumerable<Product> RetrieveAllOrderByPriceAscending()
         {
-            throw new NotImplementedException();
+            return (from product in _products
+                orderby product.Price
+                select product);
         }
 
-        public void RetrieveAll(string name)
+        public IEnumerable<Product> RetrieveAll(string name)
         {
-            throw new NotImplementedException();
+            return (from product in _products
+                where product.ProductName == name
+                select product);
         }
 
-        public void RetrieveAll(DateTime startDate, DateTime endDate)
+        public IEnumerable<Product> RetrieveAll(DateTime startDate, DateTime endDate)
         {
-            throw new NotImplementedException();
+            return (from product in _products
+                where product.StartDate == startDate && product.EndDate == endDate
+                select product);
         }
     }
 }
