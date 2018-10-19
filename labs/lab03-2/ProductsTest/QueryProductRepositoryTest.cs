@@ -135,8 +135,8 @@ namespace ProductsTest
         public void Given_NonEmptyRepository_When_RetrievingAllByStartDateAndEndDate_Then_ReturnsProductsByStartDateAndEndDate()
         {
             var products = _productRepository.RetrieveAll().ToArray();
-            var startDate = products.ElementAt(0).StartDate;
-            var endDate = products.ElementAt(0).EndDate;
+            var startDate = products[0].StartDate;
+            var endDate = products[0].EndDate;
 
             var filteredResult = _productRepository.RetrieveAll(startDate, endDate);
             Assert.IsTrue(filteredResult.Count() == 1);
