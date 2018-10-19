@@ -51,13 +51,8 @@ namespace Products
         public IEnumerable<Product> RetrieveAll(DateTime startDate, DateTime endDate)
         {
             return (from product in _products
-                where product.StartDate == startDate && product.EndDate == endDate
+                where product.StartDate >= startDate && product.EndDate <= endDate
                 select product);
-        }
-
-        public IEnumerable<Product> RetrieveAll()
-        {
-            return _products;
         }
     }
 }

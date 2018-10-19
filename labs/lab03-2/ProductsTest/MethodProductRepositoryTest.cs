@@ -16,96 +16,18 @@ namespace ProductsTest
         {
             _productRepository = new MethodProductRepository(new List<Product>
             {
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(10),
-                    Id = new Guid("5F0E1A94-79FF-4685-AEE7-8FD519D292C2"),
-                    Price = 10.5,
-                    ProductDescription = "Good for improving your coding skills",
-                    ProductName = "Book",
-                    StartDate = DateTime.Now.AddDays(-20)
-                },
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(20),
-                    Id = new Guid("D6F96CD8-4CF0-47DF-A65A-EA872E652DB0"),
-                    Price = 200.0,
-                    ProductDescription = "Washes perfect",
-                    ProductName = "Washing machine",
-                    StartDate = DateTime.Now.AddDays(-30)
-                },
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(10),
-                    Id = new Guid("A2A99E36-96BA-43CA-AAFB-0DF6CF96EA95"),
-                    Price = 288.7,
-                    ProductDescription = "Easy to carry around",
-                    ProductName = "Laptop",
-                    StartDate = DateTime.Now.AddDays(-5)
-                },
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(10),
-                    Id = new Guid("742C834C-8DA5-4445-AF48-796430F693B0"),
-                    Price = 100.5,
-                    ProductDescription = "For hair, skin and nails",
-                    ProductName = "Supplements",
-                    StartDate = DateTime.Now.AddDays(5)
-                },
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(13),
-                    Id = new Guid("CF61D2CD-E361-4785-A8CE-015218C1EFA9"),
-                    Price = 50.5,
-                    ProductDescription = "Laser printer",
-                    ProductName = "Printer",
-                    StartDate = DateTime.Now.AddDays(4)
-                },
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(15),
-                    Id = new Guid("A5448575-0A13-4AC9-88DE-FF103792C645"),
-                    Price = 50.3,
-                    ProductDescription = "Wireless",
-                    ProductName = "Mouse",
-                    StartDate = DateTime.Now.AddDays(-10)
-                },
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(3),
-                    Id = new Guid("84BDCB4D-889A-4494-9FDE-85D75F7FD153"),
-                    Price = 1.5,
-                    ProductDescription = "Black",
-                    ProductName = "Pen",
-                    StartDate = DateTime.Now.AddDays(1)
-                },
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(0),
-                    Id = new Guid("0844BA70-4D56-4B24-A6BB-D2887B3011ED"),
-                    Price = 100.5,
-                    ProductDescription = "...",
-                    ProductName = "Supplements",
-                    StartDate = DateTime.Now.AddDays(4)
-                },
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(25),
-                    Id = new Guid("724D71DB-6554-4C2A-A43C-06D8FEC612F8"),
-                    Price = 100.5,
-                    ProductDescription = "Multi-functional",
-                    ProductName = "Blending machine",
-                    StartDate = DateTime.Now.AddDays(0)
-                },
-                new Product
-                {
-                    EndDate = DateTime.Now.AddDays(2),
-                    Id = new Guid("28A2612C-9627-4739-A6BD-7690D6D33771"),
-                    Price = 25.5,
-                    ProductDescription = "Ergonomic",
-                    ProductName = "Keyboard",
-                    StartDate = DateTime.Now.AddDays(1)
-                }
+                Product.Create("Book", "Good for improving your coding skills", DateTime.Now.AddDays(-20),
+                    DateTime.Now.AddDays(10), 10.5),
+                Product.Create("Washing machine", "Washes perfect", DateTime.Now.AddDays(-30), DateTime.Now.AddDays(20),
+                    10.5),
+                Product.Create("Some", "Some", DateTime.Now.AddDays(-5), DateTime.Now.AddDays(10), 100.5),
+                Product.Create("Cat", "Fun", DateTime.Now.AddDays(5), DateTime.Now.AddDays(10), 24.5),
+                Product.Create("Tv", "HD", DateTime.Now.AddDays(4), DateTime.Now.AddDays(13), 10.5),
+                Product.Create("Book", "Good", DateTime.Now.AddDays(-10), DateTime.Now.AddDays(15), 100.5),
+                Product.Create("Laptop", "Good", DateTime.Now.AddDays(1), DateTime.Now.AddDays(3), 40.5),
+                Product.Create("Phone", "Innovative", DateTime.Now.AddDays(4), DateTime.Now.AddDays(0), 5560.5),
+                Product.Create("Supplements", "For skin and hair", DateTime.Now.AddDays(0), DateTime.Now.AddDays(25), 130.5),
+                Product.Create("Blender", "Multi functional", DateTime.Now.AddDays(1), DateTime.Now.AddDays(2), 50.5)
             });
         }
 
@@ -140,12 +62,11 @@ namespace ProductsTest
         public void
             Given_NonEmptyRepository_When_RetrievingAllByStartDateAndEndDate_Then_ReturnsProductsByStartDateAndEndDate()
         {
-            var products = _productRepository.RetrieveAll().ToArray();
-            var startDate = products[0].StartDate;
-            var endDate = products[0].EndDate;
+            var startDate = DateTime.Now.AddDays(1);
+            var endDate = DateTime.Now.AddDays(2);
 
-            var filteredResults = _productRepository.RetrieveAll(startDate, endDate);
-            Assert.IsTrue(filteredResults.Count() == 1);
+            var filteredResult = _productRepository.RetrieveAll(startDate, endDate);
+            Assert.IsTrue(filteredResult.Count() == 1);
         }
 
         [TestMethod]
