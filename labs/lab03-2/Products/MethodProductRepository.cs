@@ -43,9 +43,9 @@ namespace Products
             return _products.Where(p => p.StartDate == startDate && p.EndDate == endDate);
         }
 
-        public object RetrieveAll()
+        public IEnumerable<Product> RetrieveAll()
         {
-            throw new NotImplementedException();
+            return _products;
         }
     }
 }
