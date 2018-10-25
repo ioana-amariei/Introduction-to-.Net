@@ -1,9 +1,0 @@
-C:\facultate\an3\sem1\Introduction-to-.Net\courses\demo\curs3\Todos\bin\Debug\netcoreapp2.1\Todos.deps.json
-C:\facultate\an3\sem1\Introduction-to-.Net\courses\demo\curs3\Todos\bin\Debug\netcoreapp2.1\Todos.dll
-C:\facultate\an3\sem1\Introduction-to-.Net\courses\demo\curs3\Todos\bin\Debug\netcoreapp2.1\Todos.pdb
-C:\facultate\an3\sem1\Introduction-to-.Net\courses\demo\curs3\Todos\obj\Debug\netcoreapp2.1\Todos.csprojAssemblyReference.cache
-C:\facultate\an3\sem1\Introduction-to-.Net\courses\demo\curs3\Todos\obj\Debug\netcoreapp2.1\Todos.csproj.CoreCompileInputs.cache
-C:\facultate\an3\sem1\Introduction-to-.Net\courses\demo\curs3\Todos\obj\Debug\netcoreapp2.1\Todos.AssemblyInfoInputs.cache
-C:\facultate\an3\sem1\Introduction-to-.Net\courses\demo\curs3\Todos\obj\Debug\netcoreapp2.1\Todos.AssemblyInfo.cs
-C:\facultate\an3\sem1\Introduction-to-.Net\courses\demo\curs3\Todos\obj\Debug\netcoreapp2.1\Todos.dll
-C:\facultate\an3\sem1\Introduction-to-.Net\courses\demo\curs3\Todos\obj\Debug\netcoreapp2.1\Todos.pdb
