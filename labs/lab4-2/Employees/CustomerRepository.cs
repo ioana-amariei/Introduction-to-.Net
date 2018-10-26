@@ -21,7 +21,9 @@ namespace Employees
         public void Update(Customer customer)
         {
             var updatedCustomer = ApplicationContext.Customers.Find(customer.Id);
-            updatedCustomer.Email = "updated@gmail.com";
+            updatedCustomer.Update(customer);
+
+            ApplicationContext.Update(updatedCustomer);
             ApplicationContext.SaveChanges();
         }
 

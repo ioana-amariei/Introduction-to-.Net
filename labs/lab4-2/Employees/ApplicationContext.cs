@@ -9,8 +9,8 @@ namespace Employees
             Database.EnsureCreated();
         }
 
-        public DbSet<Employee> Employees { get; }
-        public DbSet<Customer> Customers { get; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,7 +22,7 @@ namespace Employees
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mslocaldb;Database=Products;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=management;Trusted_Connection=True;");
         }
     }
 }

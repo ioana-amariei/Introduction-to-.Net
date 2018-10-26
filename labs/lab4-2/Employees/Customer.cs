@@ -5,15 +5,20 @@ namespace Employees
 {
     public class Customer
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Address { get; set; }
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public string Address { get; private set; }
 
         [RegularExpression("(00|\\+)40\\d{10}")]
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber { get; private set; }
 
         [RegularExpression("[a-zA-Z0-9_.-]+@[a-z]+.[a-z]+")]
-        public string Email { get; set; }
+        public string Email { get; private set; }
+
+        private Customer()
+        {
+            // Entity Framework
+        }
 
         public Customer(string name, string address, string phoneNumber, string email)
         {
@@ -22,6 +27,14 @@ namespace Employees
             Address = address;
             PhoneNumber = phoneNumber;
             Email = email;
+        }
+
+        public void Update(Customer customer)
+        {
+            Name = customer.Name;
+            Address = customer.Address;
+            PhoneNumber = customer.PhoneNumber;
+            Email = customer.Email;
         }
     }
 }

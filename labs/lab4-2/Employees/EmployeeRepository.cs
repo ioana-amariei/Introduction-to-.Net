@@ -21,7 +21,8 @@ namespace Employees
         public void Update(Employee employee)
         {
             var updatedEmployee = ApplicationContext.Employees.Find(employee.Id);
-            updatedEmployee.LastName = "Updated";
+            updatedEmployee.Update(employee);
+            ApplicationContext.Update(updatedEmployee);
             ApplicationContext.SaveChanges();
         }
 
