@@ -18,7 +18,6 @@ namespace Program
             var updatedEmployee = new Employee(employee.FirstName, "Amariei", employee.StartDate, employee.EndDate, employee.Salary);
             employee.Update(updatedEmployee);
             employeeRepository.Update(employee);
-            
         }
     }
 }
