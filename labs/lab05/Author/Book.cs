@@ -7,6 +7,7 @@ namespace Authors
     {
         public Guid Id { get; private set; }
 
+        [Required]
         [MaxLength(100), MinLength(50)]
         public string Title { get; private set; }
 
@@ -16,6 +17,11 @@ namespace Authors
         {
             Id = Guid.NewGuid();
             Title = title;
+        }
+
+        public void AttachAuthor(Guid id)
+        {
+            this.AuthorId = id;
         }
 
         private Book()

@@ -14,6 +14,8 @@ namespace Authors
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Author>()
+                .HasMany(e => e.Books);
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

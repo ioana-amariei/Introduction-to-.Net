@@ -14,13 +14,26 @@ namespace Program
             // Create
             var firstAuthor = new Author("Fowler", "Martin");
             var secondAuthor = new Author("Martin", "Robert");
+            var thirdAuthor = new Author("Evans", "Eric");
+
             unitOfWork.AuthorRepository.Create(firstAuthor);
             unitOfWork.AuthorRepository.Create(secondAuthor);
+            unitOfWork.AuthorRepository.Create(thirdAuthor);
+
+            unitOfWork.Commit(); // Save changes to database
 
             var firstBook = new Book("Refactoring");
+            firstBook.AttachAuthor(firstAuthor.Id);
+            
             var secondBook = new Book("Clean code");
+            secondBook.AttachAuthor(secondAuthor.Id);
+
+            var thirdBook = new Book("Domain Driven Design");
+            thirdBook.AttachAuthor(thirdAuthor.Id);
+
             unitOfWork.BookRepository.Create(firstBook);
             unitOfWork.BookRepository.Create(secondBook);
+            unitOfWork.BookRepository.Create(thirdBook);
 
             unitOfWork.Commit(); // Save changes to database
 
@@ -36,11 +49,28 @@ namespace Program
             }
 
             // eager loading
-            var books = dbContext.Books.ToList();
+            var authors = dbContext.Authors.ToList();
+            foreach (var item in authors)
+            {
+                Console.WriteLine(item.FirstName + " " + item.LastName);
+            }
 
             // explicit loading
-            var author = dbContext.Authors.Single(a => a.FirstName == "Martin");
+            var author = dbContext.Authors.FirstOrDefault(a => a.FirstName == "Martin");
             dbContext.Entry(author).Collection(b => b.Books).Load();
+
+
+            // Remove
+//            var firstBook = unitOfWork.BookRepository.Entities.First(b => b.Title == "Refactoring");
+//            var firstAuthor = unitOfWork.AuthorRepository.Entities.First(a => a.FirstName == "Fowler");
+            unitOfWork.BookRepository.RemoveById(firstBook.Id);
+            unitOfWork.AuthorRepository.RemoveById(firstAuthor.Id);
+
+            unitOfWork.Commit(); // Save changes to database
+
+            Console.WriteLine("Book and author removed");
+
+            Console.ReadKey();
         }
     }
 }
