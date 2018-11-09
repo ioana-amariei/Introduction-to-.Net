@@ -18,7 +18,6 @@ namespace BusinessLayer
 
         public async  Task Create(PointOfInterest pointOfInterest)
         {
-            pointOfInterest.Id = Guid.NewGuid();
             _context.Add(pointOfInterest);
             await _context.SaveChangesAsync();
         }

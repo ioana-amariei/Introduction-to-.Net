@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLayer;
@@ -6,12 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataLayer;
 using PointsOfInterestApplication.Models;
+using PointsOfInterestApplication.ViewModel;
 
 namespace PointsOfInterestApplication.Controllers
 {
     public class PointOfInterestsController : Controller
     {
         private readonly IRepository _repository;
+        private readonly MapperConfiguration _config;
 
         // sa adaugam ViewModel
         // entitatile din data layer nu vreau sa fie expuse
@@ -23,12 +26,17 @@ namespace PointsOfInterestApplication.Controllers
         public PointOfInterestsController(IRepository repository)
         {
             _repository = repository;
+            _config = new MapperConfiguration(poi =>
+            {
+                poi.CreateMap<PoiViewModel, PointOfInterest>();
+            });
         }
 
         // GET: PointOfInterests
         public async Task<IActionResult> Index()
         {
-            return View(await _repository.GetAll());
+            var poiViewModels = EntityListToDtoListMapper(await _repository.GetAll());
+            return View(poiViewModels);
         }
 
         // GET: PointOfInterests/Details/5
@@ -40,12 +48,13 @@ namespace PointsOfInterestApplication.Controllers
             }
 
             var pointOfInterest = await _repository.FirstOrDefault(id);
+            var poiViewModel = EntityToDtoMapper(pointOfInterest);
             if (pointOfInterest == null)
             {
                 return NotFound();
             }
 
-            return View(pointOfInterest);
+            return View(poiViewModel);
         }
 
         // GET: PointOfInterests/Create
@@ -59,33 +68,31 @@ namespace PointsOfInterestApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,Description,Latitude,Longitude,City")] CreatePointOfInterestViewModel pointOfInterestViewModel)
+        public async Task<IActionResult> Create([Bind("Name,Description,Latitude,Longitude,City")] PoiViewModel poiViewModel)
         {
             if (ModelState.IsValid)
             {
-//                var config = new MapperConfiguration(poi =>
-//                    {
-//                        poi.CreateMap<CreatePointOfInterestViewModel, PointOfInterest>();
-//                    });
-//
-//                var pointOfInterest = config.CreateMapper().Map<PointOfInterest>(pointOfInterestViewModel);
+                var pointOfInterest = DtoToEntityMapper(poiViewModel);
 
-                var pointOfInterest = new PointOfInterest
-                {
-                    City = pointOfInterestViewModel.City,
-                    Description =  pointOfInterestViewModel.Description,
-                    Id = Guid.NewGuid(),
-                    Latitude = pointOfInterestViewModel.Latitude,
-                    Longitude = pointOfInterestViewModel.Longitude,
-                    Name = pointOfInterestViewModel.Name
-                    //
-                };
-                _repository.Create(pointOfInterest);
+                //var pointOfInterest = new PointOfInterest
+                //{
+                //    City = pointOfInterestViewModel.City,
+                //    Description =  pointOfInterestViewModel.Description,
+                //    Id = Guid.NewGuid(),
+                //    Latitude = pointOfInterestViewModel.Latitude,
+                //    Longitude = pointOfInterestViewModel.Longitude,
+                //    Name = pointOfInterestViewModel.Name
+                //    //
+                //};
+                await _repository.Create(pointOfInterest);
                 return RedirectToAction(nameof(Index));
+
             }
 
-             // pe create click dreapta add View -> Cretae ndsmcmView Model
-            return View(pointOfInterest);
+            return View(poiViewModel);
+
+            // pe create click dreapta add View -> Cretae ndsmcmView Model
+            //return View(pointOfInterest);
         }
 
         // GET: PointOfInterests/Edit/5
@@ -97,11 +104,12 @@ namespace PointsOfInterestApplication.Controllers
             }
 
             var pointOfInterest = await _repository.FindAsync(id);
+            var poiViewModel = EntityToDtoMapper(pointOfInterest);
             if (pointOfInterest == null)
             {
                 return NotFound();
             }
-            return View(pointOfInterest);
+            return View(poiViewModel);
         }
 
         // POST: PointOfInterests/Edit/5
@@ -109,12 +117,14 @@ namespace PointsOfInterestApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description,Latitude,Longitude,City")] PointOfInterest pointOfInterest)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description,Latitude,Longitude,City")] PoiViewModel poiViewModel)
         {
-            if (id != pointOfInterest.Id)
+            if (id != poiViewModel.Id)
             {
                 return NotFound();
             }
+
+            var pointOfInterest = DtoToEntityMapper(poiViewModel);
 
             if (ModelState.IsValid)
             {
@@ -135,7 +145,7 @@ namespace PointsOfInterestApplication.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(pointOfInterest);
+            return View(poiViewModel);
         }
 
         // GET: PointOfInterests/Delete/5
@@ -147,12 +157,13 @@ namespace PointsOfInterestApplication.Controllers
             }
 
             var pointOfInterest = await _repository.FirstOrDefault(id);
+            var poiViewModel = EntityToDtoMapper(pointOfInterest);
             if (pointOfInterest == null)
             {
                 return NotFound();
             }
 
-            return View(pointOfInterest);
+            return View(poiViewModel);
         }
 
         // POST: PointOfInterests/Delete/5
@@ -167,6 +178,24 @@ namespace PointsOfInterestApplication.Controllers
         private bool PointOfInterestExists(Guid id)
         {
             return _repository.Exists(id);
+        }
+
+        private PointOfInterest DtoToEntityMapper(PoiViewModel poiViewModel)
+        {
+            var pointOfInterest = _config.CreateMapper().Map<PointOfInterest>(poiViewModel);
+            return pointOfInterest;
+        }
+
+        private PoiViewModel EntityToDtoMapper(PointOfInterest pointOfInterest)
+        {
+            var poiViewModel = _config.CreateMapper().Map<PoiViewModel>(pointOfInterest);
+            return poiViewModel;
+        }
+
+        private List<PoiViewModel> EntityListToDtoListMapper(List<PointOfInterest> pointOfInterests)
+        {
+            var poiViewModels = _config.CreateMapper().Map<List<PointOfInterest>, List<PoiViewModel>>(pointOfInterests);
+            return poiViewModels;
         }
     }
 }

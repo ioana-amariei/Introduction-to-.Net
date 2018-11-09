@@ -5,12 +5,12 @@ namespace DataLayer
 {
     public class PointOfInterest
     {
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
-        public string City { get; set; }
+        public Guid Id { get; private set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public double Latitude { get; private set; }
+        public double Longitude { get; private set; }
+        public string City { get; private set; }
 
         public PointOfInterest()
         {
