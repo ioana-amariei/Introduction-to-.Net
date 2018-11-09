@@ -1,15 +1,24 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using BusinessLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataLayer;
+using PointsOfInterestApplication.Models;
 
 namespace PointsOfInterestApplication.Controllers
 {
     public class PointOfInterestsController : Controller
     {
         private readonly IRepository _repository;
+
+        // sa adaugam ViewModel
+        // entitatile din data layer nu vreau sa fie expuse
+        // DTO cu gettere si settere ai UI sa fie validate inainte de a merge pe server
+        // pt CREATE view model (nu am nevoie de id)
+        // pt DELETE 
+
 
         public PointOfInterestsController(IRepository repository)
         {
@@ -50,13 +59,32 @@ namespace PointsOfInterestApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,CityId")] PointOfInterest pointOfInterest)
+        public async Task<IActionResult> Create([Bind("Name,Description,Latitude,Longitude,City")] CreatePointOfInterestViewModel pointOfInterestViewModel)
         {
             if (ModelState.IsValid)
             {
-                await _repository.Create(pointOfInterest);
+//                var config = new MapperConfiguration(poi =>
+//                    {
+//                        poi.CreateMap<CreatePointOfInterestViewModel, PointOfInterest>();
+//                    });
+//
+//                var pointOfInterest = config.CreateMapper().Map<PointOfInterest>(pointOfInterestViewModel);
+
+                var pointOfInterest = new PointOfInterest
+                {
+                    City = pointOfInterestViewModel.City,
+                    Description =  pointOfInterestViewModel.Description,
+                    Id = Guid.NewGuid(),
+                    Latitude = pointOfInterestViewModel.Latitude,
+                    Longitude = pointOfInterestViewModel.Longitude,
+                    Name = pointOfInterestViewModel.Name
+                    //
+                };
+                _repository.Create(pointOfInterest);
                 return RedirectToAction(nameof(Index));
             }
+
+             // pe create click dreapta add View -> Cretae ndsmcmView Model
             return View(pointOfInterest);
         }
 
@@ -81,7 +109,7 @@ namespace PointsOfInterestApplication.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description,CityId")] PointOfInterest pointOfInterest)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,Description,Latitude,Longitude,City")] PointOfInterest pointOfInterest)
         {
             if (id != pointOfInterest.Id)
             {
