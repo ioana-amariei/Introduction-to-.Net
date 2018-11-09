@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
+using BusinessLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataLayer;
@@ -9,17 +9,17 @@ namespace PointsOfInterestApplication.Controllers
 {
     public class PointOfInterestsController : Controller
     {
-        private readonly CityContext _context;
+        private readonly IRepository _repository;
 
-        public PointOfInterestsController(CityContext context)
+        public PointOfInterestsController(IRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         // GET: PointOfInterests
         public async Task<IActionResult> Index()
         {
-            return View(await _context.PointOfInterests.ToListAsync());
+            return View(await _repository.GetAll());
         }
 
         // GET: PointOfInterests/Details/5
@@ -30,8 +30,7 @@ namespace PointsOfInterestApplication.Controllers
                 return NotFound();
             }
 
-            var pointOfInterest = await _context.PointOfInterests
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var pointOfInterest = await _repository.FirstOrDefault(id);
             if (pointOfInterest == null)
             {
                 return NotFound();
@@ -55,9 +54,7 @@ namespace PointsOfInterestApplication.Controllers
         {
             if (ModelState.IsValid)
             {
-                pointOfInterest.Id = Guid.NewGuid();
-                _context.Add(pointOfInterest);
-                await _context.SaveChangesAsync();
+                await _repository.Create(pointOfInterest);
                 return RedirectToAction(nameof(Index));
             }
             return View(pointOfInterest);
@@ -71,7 +68,7 @@ namespace PointsOfInterestApplication.Controllers
                 return NotFound();
             }
 
-            var pointOfInterest = await _context.PointOfInterests.FindAsync(id);
+            var pointOfInterest = await _repository.FindAsync(id);
             if (pointOfInterest == null)
             {
                 return NotFound();
@@ -95,8 +92,7 @@ namespace PointsOfInterestApplication.Controllers
             {
                 try
                 {
-                    _context.Update(pointOfInterest);
-                    await _context.SaveChangesAsync();
+                    await _repository.Update(pointOfInterest);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -122,8 +118,7 @@ namespace PointsOfInterestApplication.Controllers
                 return NotFound();
             }
 
-            var pointOfInterest = await _context.PointOfInterests
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var pointOfInterest = await _repository.FirstOrDefault(id);
             if (pointOfInterest == null)
             {
                 return NotFound();
@@ -137,15 +132,13 @@ namespace PointsOfInterestApplication.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var pointOfInterest = await _context.PointOfInterests.FindAsync(id);
-            _context.PointOfInterests.Remove(pointOfInterest);
-            await _context.SaveChangesAsync();
+            await _repository.Delete(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool PointOfInterestExists(Guid id)
         {
-            return _context.PointOfInterests.Any(e => e.Id == id);
+            return _repository.Exists(id);
         }
     }
 }

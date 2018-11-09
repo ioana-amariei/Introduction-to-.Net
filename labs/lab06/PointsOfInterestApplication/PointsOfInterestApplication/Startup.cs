@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using BusinessLayer;
+﻿using BusinessLayer;
 using DataLayer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -34,9 +29,9 @@ namespace PointsOfInterestApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddDbContext<CityContext>(options =>
+            services.AddDbContext<PointOfInterestContext>(options =>
                 options.UseSqlServer(
-                    @"Server=(localdb)\mssqllocaldb;Database=CityManagement;Trusted_Connection=True;"));
+                    @"Server=(localdb)\mssqllocaldb;Database=PoisManagement;Trusted_Connection=True;"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IRepository, Repository>();
         }

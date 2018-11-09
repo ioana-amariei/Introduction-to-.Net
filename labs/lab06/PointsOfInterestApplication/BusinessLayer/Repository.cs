@@ -1,60 +1,59 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using DataLayer;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace BusinessLayer
 {
     public class Repository : IRepository
     {
-        private readonly CityContext _context;
+        private readonly PointOfInterestContext _context;
 
-        public Repository(CityContext context)
+        public Repository(PointOfInterestContext context)
         {
             _context = context;
         }
 
-        public async void CreateCity(City city)
+        public async  Task Create(PointOfInterest pointOfInterest)
         {
-            _context.Add(city);
+            pointOfInterest.Id = Guid.NewGuid();
+            _context.Add(pointOfInterest);
             await _context.SaveChangesAsync();
         }
 
-        public async void RemoveCity(Guid id)
+        public async Task Update(PointOfInterest pointOfInterest)
         {
-            var city = _context.Cities.Find(id);
-            _context.Cities.Remove(city);
+            _context.Update(pointOfInterest);
             await _context.SaveChangesAsync();
         }
 
-        public void AddPointOfInterest(Guid cityId, PointOfInterest pointOfInterest)
+        public async Task Delete(Guid id)
         {
-            var city = _context.Cities
-                .FirstOrDefault(c => c.Id == cityId);
-
-            if (city != null)
-            {
-                city.AttachPointOfInterest(pointOfInterest);
-                _context.SaveChanges();
-            }
+            var pointOfInterest = _context.PointOfInterests.Find(id);
+            _context.PointOfInterests.Remove(pointOfInterest);
+            await _context.SaveChangesAsync();
         }
 
-        public void RemovePointOfInterest(Guid cityId, Guid pointOfInterestId)
+        public Task<List<PointOfInterest>> GetAll()
         {
-            var city = _context.Cities
-                .Include(c => c.PointOfInterests)
-                .FirstOrDefault(c => c.Id == cityId);
-
-            if (city != null)
-            {
-                MarkAsDeleted(city.DetachPointOfInterest(pointOfInterestId));
-                _context.SaveChanges();
-            }
+            return _context.PointOfInterests.ToListAsync();
         }
 
-        private void MarkAsDeleted(PointOfInterest pointOfInterest)
+        public Task<PointOfInterest> FirstOrDefault(Guid? id)
         {
-            _context.Entry(pointOfInterest).State = EntityState.Deleted;
+            return _context.PointOfInterests.FirstOrDefaultAsync(p => p.Id == id);
+        }
+
+        public Task<PointOfInterest> FindAsync(Guid? id)
+        {
+            return _context.PointOfInterests.FindAsync(id);
+        }
+
+        public bool Exists(Guid id)
+        {
+            return _context.PointOfInterests.Any(p => p.Id == id);
         }
     }
 }

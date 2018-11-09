@@ -8,7 +8,6 @@ namespace DataLayer
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Guid CityId { get; set; }
 
         public PointOfInterest()
         {
@@ -23,11 +22,6 @@ namespace DataLayer
             Id = Guid.NewGuid();
             Name = name;
             Description = description;
-        }
-
-        public void AttachCity(Guid id)
-        {
-            CityId = id;
         }
     }
 }
