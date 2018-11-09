@@ -6,7 +6,6 @@ using BusinessLayer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DataLayer;
-using PointsOfInterestApplication.Models;
 using PointsOfInterestApplication.ViewModel;
 
 namespace PointsOfInterestApplication.Controllers
@@ -15,14 +14,7 @@ namespace PointsOfInterestApplication.Controllers
     {
         private readonly IRepository _repository;
         private readonly MapperConfiguration _config;
-
-        // sa adaugam ViewModel
-        // entitatile din data layer nu vreau sa fie expuse
-        // DTO cu gettere si settere ai UI sa fie validate inainte de a merge pe server
-        // pt CREATE view model (nu am nevoie de id)
-        // pt DELETE 
-
-
+       
         public PointOfInterestsController(IRepository repository)
         {
             _repository = repository;
@@ -73,26 +65,13 @@ namespace PointsOfInterestApplication.Controllers
             if (ModelState.IsValid)
             {
                 var pointOfInterest = DtoToEntityMapper(poiViewModel);
-
-                //var pointOfInterest = new PointOfInterest
-                //{
-                //    City = pointOfInterestViewModel.City,
-                //    Description =  pointOfInterestViewModel.Description,
-                //    Id = Guid.NewGuid(),
-                //    Latitude = pointOfInterestViewModel.Latitude,
-                //    Longitude = pointOfInterestViewModel.Longitude,
-                //    Name = pointOfInterestViewModel.Name
-                //    //
-                //};
+               
                 await _repository.Create(pointOfInterest);
                 return RedirectToAction(nameof(Index));
 
             }
 
             return View(poiViewModel);
-
-            // pe create click dreapta add View -> Cretae ndsmcmView Model
-            //return View(pointOfInterest);
         }
 
         // GET: PointOfInterests/Edit/5
