@@ -14,6 +14,19 @@ namespace DataLayer
         public PointOfInterestContext()
         {
         }
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PointOfInterest>()
+                .Property(p => p.Name)
+                .IsRequired()
+                .HasMaxLength(100);
+
+            modelBuilder.Entity<PointOfInterest>()
+                .Property(p => p.Description)
+                .IsRequired()
+                .HasMaxLength(150);
+        }
+
     }
 }
