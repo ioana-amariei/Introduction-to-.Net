@@ -1,0 +1,61 @@
+// REGISTER
+
+{
+  "name": "Amariei C. Ioana",
+  "email": "ioana.birsan@info.uaic.ro",
+  "phone": "+07484043489",
+  "password": "test123!@#",
+  "role": 1
+}
+
+
+// LOGIN
+
+{
+  "email": "ioana.birsan@info.uaic.ro",
+  "password": "test123!@#"
+}
+
+
+// LOGOUT
+
+
+// SEND EMAIL
+
+{
+  "to": [
+    "ioana.c.birsan@gmail.com",
+    "stefanmihaistrugari@gmail.com",
+    "logalex96@gmail.com",
+    "silistrualexandru@gmail.com",
+    "andradaciulei@yahoo.com"
+
+  ],
+  "cc": [
+    "ioana.c.birsan@gmail.com"
+  ],
+  "bcc": [
+    "ioana.c.birsan@gmail.com"
+  ],
+  "subject": "Test demo",
+  "body": "Demo presentation for today"
+}
+
+
+// SEND SMS
+
+{
+  "to": [
+    "+40784043489",
+    "+40720930955",
+    "+40747295142",
+    "+40741169686",
+    "+40721729339",
+  ],
+  "body": "Demo presentation for today"
+}
+
+
+// TOKEN
+
+f45c5878-0455-4ff2-a426-8a959672f4eb
